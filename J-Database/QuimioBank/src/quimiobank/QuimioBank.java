@@ -1,20 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package quimiobank;
+import quimiobank.*; //Importando classes externas que serão usadas...
 
 /**
  *
  * @author Andrey
+ * @author Pablo
+ * @version 1.0.1
+ * Idealization: Pablo S.; Andrey F.
  */
-public class QuimioBank {
 
-    /**
-     * @param args the command line arguments
-     */
+public class QuimioBank {
+    public static String driver = "jdbc:postgresql://127.0.0.1:5432/QuimioBank"; //Conexão ao Database.
+    public static String driverJDBC = "org.postgresql.Driver"; //Driver à ser utilizado.
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
     
 }
