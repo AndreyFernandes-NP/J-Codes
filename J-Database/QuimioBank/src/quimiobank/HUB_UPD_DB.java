@@ -58,7 +58,7 @@ public class HUB_UPD_DB { //Hub Update element in DataBase, nome da classe.
                 END = "WHERE id = ";
                 break;
             case 2:
-                QType = "o Nome da substancia: ";
+                QType = "o Nome da Substancia: ";
                 END = "WHERE substância = ";
                 break;
             case 3:
