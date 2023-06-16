@@ -10,11 +10,11 @@ package quimiobank;
 import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement; //Enviar um tipo de declaração ao banco de dados.
+import java.sql.Statement;
 import java.util.Scanner;
 import java.util.Random; //Hihi eu me divirto.
 
-public class CT_QB {
+public class CT_QB { // CREATE TABLE in QUIMIOBANK params, o nome da classe.
     public static String Table;
     public static Scanner ler = new Scanner(System.in);
     
@@ -61,8 +61,8 @@ public class CT_QB {
             //System.out.printf("QB-DEBUGG, SQL COMMAND: %s\n", SQLcriarTabela);
             System.out.printf("QB: Criando tabela %s...\n", Table);
             Thread.sleep(1 + new Random().nextInt(2) * 500);
-            st = conn.createStatement();
-            st.executeUpdate(SQLcriarTabela);
+            st = conn.createStatement();                // Cria a declaração,
+            st.executeUpdate(SQLcriarTabela);     // e em seguida executa ela.
             System.out.printf("QB: Tabela %s criada com sucesso!\n", Table);
             Thread.sleep(1500);
             st.close();

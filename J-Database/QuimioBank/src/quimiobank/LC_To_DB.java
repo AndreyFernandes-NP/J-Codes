@@ -25,7 +25,7 @@ public class LC_To_DB { //"Load & Connect to Database", vai executar os dois num
             System.out.println("QB: Driver carregado, tentando conexao...");
             Thread.sleep(3 + new Random().nextInt(7) * 100); //Outra pausinha meme pro programa.
         }catch (Exception e){   //Reportar se houve algum erro no loading do Driver.
-            System.out.printf("QB-ERROR: %s\n", e);
+            System.err.format("QB-ERROR: %s\n",e.getMessage());
             return false;
         }
         
@@ -36,7 +36,7 @@ public class LC_To_DB { //"Load & Connect to Database", vai executar os dois num
                 return true;
             }
         }catch (SQLException e){    //Reportar se houve algum erro SQL durante a conexão.
-            System.out.printf("QB-ERROR, SQL STATE: %s\n%s\n", e.getSQLState(), e.getMessage());
+            System.err.format("QB-ERROR, SQL STATE: %s\n%s\n", e.getSQLState(), e.getMessage());
         }
         return false;
     }
