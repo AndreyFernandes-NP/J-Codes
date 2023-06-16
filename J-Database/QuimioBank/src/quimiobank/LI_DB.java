@@ -7,7 +7,7 @@ package quimiobank;
 
 import java.util.Scanner; // Para o sistema de logon.
 
-public class LI_DB {
+public class LI_DB { //LogIn the DataBase, o nome da classe.
     public static Scanner ler = new Scanner(System.in);
     
     public static String USER(){
