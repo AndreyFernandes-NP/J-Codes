@@ -20,27 +20,47 @@ public class CT_QB { // CREATE TABLE in QUIMIOBANK params, o nome da classe.
     
     // Parâmetros Padrões da QB \\
     public static String Param1 = "Substância";
-    public static String P1Type = "VARCHAR(99)";
-    public static String Param2 = "Nome_Popular";
+    public static String P1Type = "VARCHAR(99) NOT NULL";
+    public static String Param2 = "Nome Popular";
     public static String P2Type = "VARCHAR(99)";
-    public static String Param3 = "Forma_Molecular";
-    public static String P3Type = "VARCHAR(99)";
-    public static String Param4 = "Massa_Molar";
-    public static String P4Type = "float4";
+    public static String Param3 = "Forma Molecular";
+    public static String P3Type = "VARCHAR(99) NOT NULL";
+    public static String Param4 = "Massa Molar";
+    public static String P4Type = "float4 NOT NULL";
     public static String Param5 = "Densidade";
     public static String P5Type = "float4";
-    public static String Param6 = "Ponto_de_Fusão";
+    public static String Param6 = "Ponto de Fusão";
     public static String P6Type = "float4";
-    public static String Param7 = "Ponto_de_Ebulição";
+    public static String Param7 = "Ponto de Ebulição";
     public static String P7Type = "float4";
-    public static String Param8 = "Classificação_UE";
-    public static String P8Type = "VARCHAR(99)";
+    public static String Param8 = "Classificação UE";
+    public static String P8Type = "VARCHAR(99) NOT NULL";
     public static String Param9 = "pH";
-    public static String P9Type = "float4";
-    public static String Param10 = "Quantidade";
-    public static String P10Type = "int";
+    public static String P9Type = "float4 NOT NULL";
+    public static String Param10 = "Quantidade em Litro";
+    public static String P10Type = "float4";
     public static String Param11 = "Localização";
     public static String P11Type = "VARCHAR(200)";
+    
+    //Variáveis e Parâmetros para serem retornados se necessário\\
+    public static String ParamsF = "(" + Param1 + ", " + Param2.replace(" ", "_") + ", " + Param3.replace(" ", "_")     //Essa classe tá tão cheia
+            + ", " + Param4.replace(" ", "_") + ", " + Param5 + ", " + Param6.replace(" ", "_") + ", "                  //de código criminoso, que
+            + Param7.replace(" ", "_") + ", " + Param8.replace(" ", "_") + ", "                                         //pqp...
+            + Param9 + ", " + Param10.replace(" ", "_") + ", " + Param11 + ")";
+    public static String[] PTypes = {P1Type, P2Type, P3Type, P4Type, P5Type, P6Type, P7Type, P8Type, P9Type, P10Type, P11Type};                       //Apenas esses dois aqui se salvam...
+    public static String[] Params = {Param1, Param2, Param3, Param4, Param5, Param6, Param7, Param8, Param9, Param10, Param11};                       //mas por MUITO pouco.
+    
+    public static String getParamsCode(){
+        return ParamsF;
+    }
+    
+    public static String[] getParams(){
+        return Params;
+    }
+    
+    public static String[] getTypes(){
+        return PTypes;
+    }
     
     public static boolean Table(String BD, String User, String Password) throws InterruptedException{
         System.out.print("\033[H\033[2J");
@@ -52,11 +72,11 @@ public class CT_QB { // CREATE TABLE in QUIMIOBANK params, o nome da classe.
         System.out.println("QB: Aplicando variaveis da QuimioBank...");
         Thread.sleep(3 + new Random().nextInt(7) * 100);
         
-        String SQLcriarTabela = "CREATE TABLE " + Table + " (" + Param1 + " " + P1Type + ", " + Param2 + " " + P2Type + ", " + Param3 + " " + P3Type + ", " +   //PUTA QUE PARIU, ESSE É O MAIOR 
-                Param4 + " " + P4Type + ", " + Param5 + " " + P5Type + ", " + Param6 + " " + P6Type + ", " + Param7 + " " + P7Type + ", " +                     //CRIME QUE EU JÁ FIZ NA MINHA VIDA
-                Param8 + " " + P8Type + ", " + Param9 + " " + P9Type + ", " + Param10 + " " + P10Type + ", " + Param11 + " " + P11Type + ")";                   //DE PROGRAMADOR. QUANDO FOR FAZER UM
-        Statement st = null;                                                                                                                                    //PROGRAMA DE BD 2, APLICAR ISSO DE FORMA EFICIENTE!!!
-        
+        String SQLcriarTabela = "CREATE TABLE " + Table + " (id SERIAL PRIMARY KEY, " + Param1 + " " + P1Type + ", " + Param2.replace(" ", "_") + " " + P2Type + ", " + Param3.replace(" ", "_") + " "          //ESSE É O MAIO CRIME QUE
+                + P3Type + ", " + Param4.replace(" ", "_") + " " + P4Type + ", " + Param5 + " " + P5Type + ", " + Param6.replace(" ", "_") + " " + P6Type + ", " + Param7.replace(" ", "_")      //JÁ COMETI EM TODA A MINHA VIDA
+                + " " + P7Type + ", " + Param8.replace(" ", "_") + " " + P8Type + ", " + Param9 + " " + P9Type + ", " + Param10.replace(" ", "_") + " " + P10Type + ", " + Param11 + " " + P11Type + ")";       //DE PROGRAMADOR. QUANDO FOR FAZER UM PROGRAMA
+        Statement st = null;                                                                                                                                                                                                                  //DE BD 2, APLICAR ISSO DE FORMA EFICIENTE!!! 
+                                                                                                                                                                                                                                              //Sinceramente, nem tente entender ou explicar o que fiz aqui.
         try(Connection conn = DriverManager.getConnection(BD, User, Password)){
             //System.out.printf("QB-DEBUGG, SQL COMMAND: %s\n", SQLcriarTabela);
             System.out.printf("QB: Criando tabela %s...\n", Table);
@@ -99,8 +119,7 @@ public class CT_QB { // CREATE TABLE in QUIMIOBANK params, o nome da classe.
             
             switch(ler.nextInt()){
                 case 1:
-                    if(Table(BD, User, Password)){return;}
-                    break;
+                    if(Table(BD, User, Password)){return;}else{break loop;}
                 case 2:
                     System.out.println("\nQB-ERROR: Nao implementado.");
                     Thread.sleep(1500);
