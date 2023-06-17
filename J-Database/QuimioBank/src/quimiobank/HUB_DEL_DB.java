@@ -37,9 +37,9 @@ public class HUB_DEL_DB { //Hub Delete in Database, nome da classe.
     }
     
     public static void DELETE(boolean Substance) throws InterruptedException {
-        SQLDeletarDados = "UPDATE " + TableName + " SET ";
         
         if(!Substance){
+            SQLDeletarDados = "UPDATE " + TableName + " SET ";
             System.out.print("\033[H\033[2J");
             System.out.println("//=============================\\\\");
             System.out.println("//          QuimioBank         \\\\");
@@ -91,6 +91,7 @@ public class HUB_DEL_DB { //Hub Delete in Database, nome da classe.
         System.out.print("Escolha a coluna que deseja deletar: ");
         SQLDeletarDados += ler.next() + " = NULL " + END; 
         }else{
+            SQLDeletarDados = "DELETE FROM " + TableName + " WHERE ";
             System.out.print("\033[H\033[2J");
             System.out.println("//=============================\\\\");
             System.out.println("//          QuimioBank         \\\\");
