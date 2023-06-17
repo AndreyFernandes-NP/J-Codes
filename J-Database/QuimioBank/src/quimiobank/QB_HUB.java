@@ -14,6 +14,7 @@ public class QB_HUB { //QuimioBank HUB, onde se encontra a maioria das mais impo
     public static HUB_INS_DB INSERT = new HUB_INS_DB(); //Sub-classe feita para inserir dados na tabela.
     public static HUB_UPD_DB UPDATE = new HUB_UPD_DB(); //Sub-classe feita para atualizar dados na tabela.
     public static HUB_DEL_DB DELETE = new HUB_DEL_DB(); //Sub-classe feita para deletar dados na tabela ou deletar a tabela.
+    public static HUB_SLT_DB SELECT = new HUB_SLT_DB(); //Sub-classe feita para consultar dados na tabela.
     
     public static void HUB(String TableName, String DB, String User, String Password, String PFunc, String[] Params, String[] Types) throws InterruptedException {
         loop:
@@ -43,6 +44,7 @@ public class QB_HUB { //QuimioBank HUB, onde se encontra a maioria das mais impo
                 DELETE.DEL_OPT(DB, User, Password, TableName, PFunc, Params, Types);
                 break;
             case 4:
+                SELECT.SLT_OPT(DB, User, Password, TableName, PFunc, Params, Types);
                 break;
             default:
                 break loop;

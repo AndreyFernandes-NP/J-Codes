@@ -38,7 +38,7 @@ public class HUB_INS_DB { //Hub Insert to DataBase, nome da classe.
     
     public static void INSERTION() throws InterruptedException {
         ler.nextLine();
-        PValues = "VALUES (";
+        PValues = " VALUES (";
         for(int i = 0; i < ITypes.length; i++){
             System.out.print("\033[H\033[2J");
             System.out.println("//=============================\\\\");
@@ -50,7 +50,17 @@ public class HUB_INS_DB { //Hub Insert to DataBase, nome da classe.
             System.out.printf("%s: ", IParams[i]);
             Value = ler.nextLine();
             
-            if(Type.contains("VARCHAR")){
+            if(!Value.contains("NULL")){}else{
+                if(Type.contains("NOT NULL")){
+                    if(Type.contains("VARCHAR")){
+                        Value = " ";
+                    }else{
+                        Value = "0";
+                    }
+                }
+            }
+            
+            if(Type.contains("VARCHAR") & !Value.contains("NULL")){
                 Value = "'" + Value + "'";
             }
             

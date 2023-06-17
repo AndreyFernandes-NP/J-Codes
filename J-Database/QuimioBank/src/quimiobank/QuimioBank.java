@@ -10,7 +10,6 @@ import quimiobank.*; //Importando classes externas que serão usadas...
  */
 
 import java.util.Scanner;
-import java.util.Random; //Mesma little troll que usei nas outras classes.
 
 public class QuimioBank {
     public static Scanner ler = new Scanner(System.in); //Scanner para os Switches.
@@ -28,6 +27,7 @@ public class QuimioBank {
     public static CT_QB CT = new CT_QB();               //Classe para criação de Tabelas no BD.
     public static SFT_DB SEARCH = new SFT_DB();         //Classe para procurar tabelas existentes no BD.
     public static QB_HUB QuimioBank = new QB_HUB();     //Classe para acessar o HUB de tabelas no BD.
+    public static GAT_DB GET = new GAT_DB();            //Classe para retornar todas as tabelas criadas pelo usuário no BD.
     
     public static String getDB(){ //Como o DB é um valor private, utilizamos uma função para obter seu valor.
         return DB;
@@ -72,6 +72,7 @@ public class QuimioBank {
             
             System.out.println("1 - Criar Tabela no Banco de Dados.");
             System.out.println("2 - Modificar Tabela ja existente.");
+            System.out.println("3 - Consultar todas as tabelas no Banco de Dados.");
             System.out.println("Para sair, digite qualquer outro numero.\n");
             
             System.out.print("Escolha: ");
@@ -88,6 +89,9 @@ public class QuimioBank {
                         QuimioBank.HUB(TempTableName, getDB(), getUser(), getPass(), TPFunc, TempParams, TempTypes);   
                      };
                     break;
+                case 3:
+                    GET.GetTable(getDB(), getUser(), getPass());
+                    break;
                 default:
                     break loop;
             }
@@ -98,7 +102,6 @@ public class QuimioBank {
         System.out.println("//       Para Laboratorios     \\\\"); 
         System.out.println("//=============================\\\\\n");
         
-        Thread.sleep(2 + new Random().nextInt(3) * 1000);
+        Thread.sleep(5000);
     }
-    
 }
